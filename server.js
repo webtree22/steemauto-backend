@@ -43,11 +43,7 @@ app.use(helmet())
 // more info: www.npmjs.com/package/hpp
 app.use(hpp())
 
-router.post('/testx', (req, res) => {
-  res.json({
-        msg: 'Hellow, How r u?'
-  })
-}
+
 app.use('/api/v1/dashboard/curation-trail', curationTrail)
 app.use('/api/v1/dashboard/fanbase', fanbase)
 app.use('/api/v1/dashboard/schedule_post', schedulePost)
