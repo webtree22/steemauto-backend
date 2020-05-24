@@ -32,7 +32,7 @@ app.use(cookieParser())
 app.use(function (req, res, next) {
   /** TODO: add ENV var for development mode */
   const dev = 1
-  res.header('Access-Control-Allow-Origin', (dev ? 'http://localhost:4200' : 'https://steemauto.com'))
+  res.header('Access-Control-Allow-Origin', (dev ? 'http://localhost:4200' : 'https://auto.steemdb.online'))
   res.header('Access-Control-Allow-Credentials', true)
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
   next()
