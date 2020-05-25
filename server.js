@@ -38,8 +38,8 @@ app.use(cookieParser())
 //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
 //   next()
 // })
-app.use(cors())
-
+// app.use(cors())
+app.options('*', cors())
 app.use(helmet())
 
 // more info: www.npmjs.com/package/hpp
