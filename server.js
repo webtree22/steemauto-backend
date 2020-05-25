@@ -40,7 +40,7 @@ app.use(cookieParser())
 // })
 // app.use(cors())
 app.options('*', cors())
-app.use(helmet())
+// app.use(helmet())
 
 // more info: www.npmjs.com/package/hpp
 app.use(hpp())
