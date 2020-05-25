@@ -38,9 +38,18 @@ app.use(cookieParser())
 //   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
 //   next()
 // })
-// app.use(cors())
-app.options('*', cors())
-// app.use(helmet())
+
+// app.options('*', cors())
+
+var corsOptions = {
+  origin: 'https://auto.steemdb.online',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+  "preflightContinue": false,
+}
+app.use(cors(corsOptions))
+
+app.use(helmet())
 
 // more info: www.npmjs.com/package/hpp
 app.use(hpp())
