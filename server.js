@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const hpp = require('hpp')
@@ -29,14 +30,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
-app.use(function (req, res, next) {
-  /** TODO: add ENV var for development mode */
-  const dev = 1
-  res.header('Access-Control-Allow-Origin', 'https://auto.steemdb.online')
-  res.header('Access-Control-Allow-Credentials', true)
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
-  next()
-})
+// app.use(function (req, res, next) {
+//   /** TODO: add ENV var for development mode */
+//   const dev = 1
+//   res.header('Access-Control-Allow-Origin', 'https://auto.steemdb.online')
+//   res.header('Access-Control-Allow-Credentials', true)
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
+//   next()
+// })
+app.use(cors())
 
 app.use(helmet())
 
