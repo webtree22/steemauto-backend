@@ -75,8 +75,8 @@ app.use('/api/public/curation-trail', publicCurationTrail)
 // All settings APIs
 app.use('/api/v1.1/settings/curation-trail', curationTrailSettings)
 
-const port = process.env.PORT || 80
-const host = process.env.HOST || 'localhost'
+const port = process.env.PORT || 3001
+const host = process.env.HOST || '127.0.0.1'
 app.listen(port, host, () => {
   console.log(`Application started on ${host}:${port}`)
 })
