@@ -9,7 +9,9 @@ const CREATE_DOWNVOTE_THRESHOLD_SP = 1000
 // user wants to become a trail
 router.post('/', async (req, res) => {
   const description = req.body.desc
-  const username = req.cookies.username
+  // const username = req.cookies.username
+  // console.log('user', username)
+  const username = 'sudguru'
   let type = req.body.type
   if (type && (type === 2 || type === '2')) {
     type = 2

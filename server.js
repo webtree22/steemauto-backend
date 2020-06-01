@@ -1,5 +1,5 @@
 const express = require('express')
-const cors = require('cors')
+// const cors = require('cors')
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const hpp = require('hpp')
@@ -30,25 +30,25 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 
-// app.use(function (req, res, next) {
-//   /** TODO: add ENV var for development mode */
-//   const dev = 1
-//   res.header('Access-Control-Allow-Origin', 'https://auto.steemdb.online')
-//   res.header('Access-Control-Allow-Credentials', true)
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
-//   next()
-// })
+// console.log('1');
+app.use(function (req, res, next) {
+  /** TODO: add ENV var for development mode */
+  const dev = 1
+  res.header('Access-Control-Allow-Origin', 'http://localhost')
+  res.header('Access-Control-Allow-Credentials', true)
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, access_key')
+  next()
+})
+// console.log('2');
 
-// app.options('*', cors())
-
-var corsOptions = {
-  origin: 'https://auto.steemdb.online',
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  preflightContinue: false,
-}
-app.use(cors(corsOptions))
+// var corsOptions = {
+//   origin: 'https://auto.steemdb.online',
+//   optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204,
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   credentials: true,
+//   preflightContinue: false,
+// }
+// app.use(cors(corsOptions))
 
 app.use(helmet())
 
@@ -75,8 +75,8 @@ app.use('/api/public/curation-trail', publicCurationTrail)
 // All settings APIs
 app.use('/api/v1.1/settings/curation-trail', curationTrailSettings)
 
-const port = process.env.PORT || 3001
-const host = process.env.HOST || '127.0.0.1'
+const port = process.env.PORT || 80
+const host = process.env.HOST || 'localhost'
 app.listen(port, host, () => {
   console.log(`Application started on ${host}:${port}`)
 })

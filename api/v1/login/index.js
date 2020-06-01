@@ -5,8 +5,11 @@ const scAuth = require('../../../helpers/steemconnect_call')
 const crypto = require('crypto')
 const selectExists = require('../../../helpers/select_exists')
 const safeHost = require('../../../middlewares/safeHost')
+const is_auth = require('../../../middlewares/is_auth')
 
-router.use(safeHost)
+// router.use(safeHost)
+// router.use(is_auth)
+
 
 // This API will receive steemconnect 'access_token' and will assign 'access_key' to the users
 // We will use 'access_key' in the '/middlewares/is_auth.js' to check users authorization
@@ -15,6 +18,11 @@ router.use(safeHost)
 router.post('/', async (req, res) => {
   // if received an access_token, generate a new access_key
   const accessToken = req.body.access_token
+  console.log('from login')
+  console.log('at', accessToken)
+  console.log('headers', req.headers);
+  console.log('cookies', req.cookies);
+
   if (accessToken) {
     // We must make sure access_token is valid
     const result = await scAuth(accessToken)
@@ -54,11 +62,12 @@ router.post('/', async (req, res) => {
         error: 'Wrong access_token provided'
       })
     }
-  } else if (req.headers.access_key && req.body.username) {
+  } else if (req.cookies.access_key && req.cookies.username) {
+    // req.headers.access_key && req.body.username
     // User already has access_key in the cookies
     // we will check that access_key
-    const accessKey = req.headers.access_key
-    const username = req.body.username
+    const accessKey = req.cookies.access_key
+    const username = req.cookies.username
     const result = await con.query(
       'SELECT EXISTS(SELECT `user` FROM `users` WHERE `user`=? AND `access_key`=?)',
       [username, accessKey]
